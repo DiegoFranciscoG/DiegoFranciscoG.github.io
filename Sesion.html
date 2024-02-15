@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <!-- Contenido HTML -->
+
+    <script>
+        $(document).ready(function() {
+            function mostrarModal(modal) {
+                $('.modal-container').fadeOut();
+                $(modal).fadeIn();
+            }
+
+            // Mostrar el modal de Crear cuenta
+            $('.form-link').eq(0).on('click', function(e) {
+                e.preventDefault();
+                mostrarModal('.modal-container.modal-crear-cuenta');
+            });
+
+            // Mostrar el modal de ¿Has olvidado tu correo electrónico?
+            $('.form-link').eq(1).on('click', function(e) {
+                e.preventDefault();
+                mostrarModal('.modal-container.modal-olvide-email');
+            });
+
+            // Ocultar los modales cuando se hace clic en el botón de cerrar
+            $('.modal-close').on('click', function() {
+                $('.modal-container').fadeOut();
+            });
+
+            // Simular el inicio de sesión con el mensaje "Próximamente disponible"
+            $('.form-button').on('click', function(e) {
+                const modal = $(this).hasClass('form-button-iniciar') ? '.modal-container.modal-iniciar-sesion' : '.modal-container.modal-olvide-email';
+                e.preventDefault();
+                mostrarModal(modal);
+                $('.modal-container.modal-pronto-disponible').fadeIn();
+            });
+        });
+    </script>
+</body>
+</html>
+    <div class="container">
+        <img src="Imagen/gatos.jpg" alt="Logo Gmail" class="logo">
+        <button class="toggle-cat" id="cat-btn-1">Mostrar gato</button>
+        <form action="#" class="form">
+            <div class="form-field">
+                <label for="email">Correo electrónico o teléfono</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-field">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="form-button">Iniciar sesión</button>
+            <div class="form-options">
+                <a href="#" class="form-link">¿Has olvidado tu correo electrónico?</a>
+                <span class="form-separator">|</span>
+                <a href="#" class="form-link">Usa el modo invitados para iniciar sesión de forma privada</a>
+            </div>
+        </form>
+        <div class="form-footer">
+            <a href="#" class="form-link">Crear cuenta</a>
+            <span class="form-separator">|</span>
+            <a href="#" class="form-link">Español (España)</a>
+        </div>
+    </div>
+    <!-- Agrega el siguiente código antes de la etiqueta de cierre </body> -->
+</body>
+<!-- Agrega el siguiente código antes de la etiqueta de cierre </body> -->
+
+<!-- Crear cuenta -->
+<div class="modal-container modal-crear-cuenta">
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <h2>Crear cuenta</h2>
+        <form action="#">
+            <div class="form-field">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" required>
+            </div>
+            <div class="form-field">
+                <label for="email-crear">Correo electrónico</label>
+                <input type="email" id="email-crear" required>
+            </div>
+            <div class="form-field">
+                <label for="password-crear">Contraseña</label>
+                <input type="password" id="password-crear" required>
+            </div>
+            <button type="submit" class="form-button">Crear cuenta</button>
+        </form>
+    </div>
+</div>
+
+<!-- ¿Has olvidado tu correo electrónico? -->
+<div class="modal-container modal-olvide-email">
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <h2>¿Has olvidado tu correo electrónico?</h2>
+        <p>Ingresa tu número de teléfono y te ayudaremos a recuperar tu cuenta.</p>
+        <form action="#">
+            <div class="form-field">
+                <label for="telefono">Número de teléfono</label>
+                <input type="tel" id="telefono" required>
+            </div>
+            <button type="submit" class="form-button">Continuar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Iniciar sesión -->
+<div class="modal-container modal-iniciar-sesion">
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <h2>Iniciar sesión</h2>
+        <p>Bienvenido de vuelta a TuApp. Ingresa tus credenciales para continuar.</p>
+        <form action="#">
+            <div class="form-field">
+                <label for="email-iniciar">Correo electrónico o teléfono</label>
+                <input type="email" id="email-iniciar" required>
+            </div>
+            <div class="form-field">
+                <label for="password-iniciar">Contraseña</label>
+                <input type="password" id="password-iniciar" required>
+            </div>
+            <button type="submit" class="form-button">Iniciar sesión</button>
+        </form>
+    </div>
+</div>
+
+<!-- Próximamente disponible -->
+<div class="modal-container modal-pronto-disponible">
+    <div class="modal modal-pronto">
+        <h2>Próximamente disponible</h2>
+        <p>Estamos trabajando arduamente para ofrecerte la mejor experiencia. ¡Vuelve pronto!</p>
+    </div>
+</div>
+</html>

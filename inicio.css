@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que el contenido se alinee en el centro de la pantalla */
+    margin: 0;
+    background-color: #f5f5dc; /* Cambia el color de fondo a un tono más claro y cálido */
+}
+
+body {
+    /* Otras propiedades CSS */
+    background-image: url('gatos.jpg'); /* Cambia la imagen de fondo a la de gato */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 300px;
+    border: 1px solid #e0c6f5; /* Cambia el color del borde a un tono más claro y cálido */
+    border-radius: 2px;
+    padding: 24px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    position: relative; /* Agrega esta propiedad para posicionar el gato relativo al contenedor */
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 36px;
+    width: 120px;
+    height: 64px; 
+    position: absolute; /* Posiciona el logo en la esquina superior izquierda del contenedor */
+    top: -64px; /* Ajusta la posición vertical del logo */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form-field {
+    margin-bottom: 16px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e0c6f5; /* Cambia el color del borde a un tono más claro y cálido */
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.form-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #e0c6f5; /* Cambia el color de fondo a un tono más claro y cálido */
+    border: none;
+    border-radius: 2px;
+    color: #000; /* Cambia el color del texto a negro */
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.form-button:hover {
+    background-color: #d3addd; /* Cambia el color de fondo al hover a un tono más claro y cálido */
+}
+
+.form-options {
+    margin-top: 16px;
+    font-size: 12px;
+}
+
+/* Centra el formulario */
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Modales */
+.modal-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5dc}
