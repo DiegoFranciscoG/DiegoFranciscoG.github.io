@@ -30,6 +30,8 @@ El archivo contiene el código HTML estructural y las llamadas a los archivos CS
 
 El proyecto utiliza jQuery para las animaciones de mostrar y ocultar modales. Asegúrate de incluir la librería jQuery en tu proyecto antes de utilizar el código JavaScript.
 
+
 Para personalizar el proyecto, puedes modificar las reglas de estilo en el archivo . También puedes cambiar las imágenes y el gif utilizados en el proyecto.inicio.css
 
 Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en preguntar. Disfruta usando mi codigo de inicio de sesión con efectos de gatos 😸 .</p>
+![Screenshot 2024-02-14 194024](https://github.com/DiegoFranciscoG/DiegoFranciscoG.github.io/assets/148287776/02a58500-8116-499b-9aad-84839ce36bc0)
