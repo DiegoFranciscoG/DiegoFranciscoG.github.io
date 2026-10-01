@@ -1,0 +1,212 @@
+---
+import { person, type Lang } from "../data/profile";
+import { homePath, otherLang, t } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const strings = t(lang);
+const other = otherLang(lang);
+const sections = [
+  ["proyectos", strings.nav.projects],
+  ["experiencia", strings.nav.experience],
+  ["habilidades", strings.nav.skills],
+  ["certificaciones", strings.nav.certifications],
+  ["contacto", strings.nav.contact],
+] as const;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={homePath(lang)}>
+      <span class="mark" aria-hidden="true">DG</span>
+      <span>{person.shortName}</span>
+    </a>
+    <nav aria-label={strings.navLabel}>
+      <ul>
+        {
+          sections.map(([id, label]) => (
+            <li>
+              <a href={`#${id}`}>{label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="tools">
+      <a class="lang" href={homePath(other)} hreflang={other} lang={other} aria-label={strings.switchLangLabel}>
+        {strings.switchLang}
+      </a>
+      <button class="theme" type="button" id="theme-toggle" aria-label={strings.themeToggle} aria-pressed="false">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"></path>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const root = document.documentElement;
+  const button = document.getElementById("theme-toggle");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const current = () => root.dataset.theme ?? (prefersDark.matches ? "dark" : "light");
+  const sync = () => button?.setAttribute("aria-pressed", String(current() === "dark"));
+
+  sync();
+  prefersDark.addEventListener("change", sync);
+  button?.addEventListener("click", () => {
+    const next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      // Sin almacenamiento (modo privado): el tema vale solo para esta visita.
+    }
+    sync();
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .mark {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1d4ed8, #0f766e);
+    color: #ffffff;
+    font: 700 0.85rem/1 var(--mono);
+  }
+
+  nav {
+    margin-inline-start: auto;
+    min-width: 0;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 0.5rem 0.65rem;
+    border-radius: 8px;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.93rem;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .lang,
+  .theme {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0 0.7rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font: 600 0.9rem/1 var(--font);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .theme svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  .theme .moon {
+    display: none;
+  }
+
+  :global(:root[data-theme="dark"]) .theme .sun {
+    display: none;
+  }
+
+  :global(:root[data-theme="dark"]) .theme .moon {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .theme .sun {
+      display: none;
+    }
+
+    :global(:root:not([data-theme="light"])) .theme .moon {
+      display: block;
+    }
+  }
+
+  @media (max-width: 52rem) {
+    .bar {
+      flex-wrap: wrap;
+      row-gap: 0;
+      padding-block: 0.5rem;
+    }
+
+    nav {
+      order: 3;
+      width: 100%;
+      margin-inline-start: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tools {
+      margin-inline-start: auto;
+    }
+  }
+</style>

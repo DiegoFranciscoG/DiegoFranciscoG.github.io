@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+import { homePath, t } from "../i18n/ui";
+
+const es = t("es");
+const en = t("en");
+---
+
+<Base lang="es" title={`${es.notFoundTitle} · Diego Granda`} noindex>
+  <main id="contenido" class="container not-found">
+    <p class="eyebrow">404</p>
+    <h1>{es.notFoundTitle}</h1>
+    <p>{es.notFoundText}</p>
+    <p><a class="button primary" href={homePath("es")}>{es.backHome}</a></p>
+    <p lang="en" class="muted">
+      {en.notFoundTitle}. <a href={homePath("en")}>{en.backHome}</a>
+    </p>
+  </main>
+</Base>
+
+<style>
+  .not-found {
+    display: grid;
+    gap: 1rem;
+    padding-block: 6rem;
+    max-width: 40rem;
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+</style>

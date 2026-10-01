@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import themeInit from "../scripts/theme-init.js?raw";
+import { GITHUB, LINKEDIN, education, person, type Lang } from "../data/profile";
+import { absoluteUrl, homePath, otherLang, t } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { lang, title, description, noindex = false } = Astro.props;
+const strings = t(lang);
+const site = Astro.site?.toString() ?? "https://diegofranciscog.github.io/";
+const pageTitle = title ?? strings.title;
+const pageDescription = description ?? strings.description;
+const canonical = absoluteUrl(site, Astro.url.pathname);
+const ogImage = absoluteUrl(site, `/og-${lang}.png`);
+const alternate = otherLang(lang);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: person.name,
+  jobTitle: person.role[lang],
+  url: absoluteUrl(site, homePath(lang)),
+  image: absoluteUrl(site, "/og-es.png"),
+  sameAs: [GITHUB, LINKEDIN],
+  address: { "@type": "PostalAddress", addressLocality: "Cuenca", addressCountry: "EC" },
+  alumniOf: { "@type": "EducationalOrganization", name: education.school },
+  knowsAbout: ["Java", "Spring Boot", "C#", ".NET", "Python", "Angular", "Flutter", "PostgreSQL", "DevSecOps"],
+};
+---
+
+<!doctype html>
+<html lang={strings.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content={person.name} />
+    <meta name="robots" content={noindex ? "noindex" : "index, follow"} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />
+    <link rel="canonical" href={canonical} />
+    {
+      !noindex && (
+        <>
+          <link rel="alternate" hreflang="es-EC" href={absoluteUrl(site, homePath("es"))} />
+          <link rel="alternate" hreflang="en" href={absoluteUrl(site, homePath("en"))} />
+          <link rel="alternate" hreflang="x-default" href={absoluteUrl(site, homePath("es"))} />
+        </>
+      )
+    }
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={person.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${person.name} · ${person.role[lang]}`} />
+    <meta property="og:locale" content={strings.ogLocale} />
+    <meta property="og:locale:alternate" content={t(alternate).ogLocale} />
+    <meta property="profile:first_name" content="Diego Francisco" />
+    <meta property="profile:last_name" content="Granda Zhingre" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline set:html={themeInit} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">{strings.skip}</a>
+    <slot />
+  </body>
+</html>
