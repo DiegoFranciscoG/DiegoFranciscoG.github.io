@@ -1,0 +1,15 @@
+# ---- Dependencias y build
+node_modules/
+dist/
+.astro/
+.lighthouseci/
+# ---- Secretos y entorno
+.env
+.env.*
+!.env.example
+# ---- IDE / SO
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
