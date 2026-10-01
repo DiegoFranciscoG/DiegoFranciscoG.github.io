@@ -14,7 +14,7 @@
 | 10 | Google Search Central: sitios multilingües | https://developers.google.com/search/docs/specialty/international/localized-versions | 2026-09-30 | `hreflang` recíproco entre `/` y `/en/` más `x-default`. |
 | 11 | npm (registro oficial) | https://www.npmjs.com/ | 2026-09-30 | Versiones estables: astro 7.3.5, @astrojs/sitemap 3.7.4, sharp 0.35.5, vitest 5.0.3, @astrojs/check 0.9.10, linkedom 0.18.13, @lhci/cli 0.15.1. TypeScript 6.0.3 porque @astrojs/check aún no acepta TypeScript 7. |
 | 12 | Releases oficiales de GitHub Actions | https://github.com/actions | 2026-09-30 | checkout v7.0.1, setup-node v7.0.0, upload-artifact v7.0.1, upload-pages-artifact v5.0.0 y deploy-pages v5.0.1, fijadas por SHA. |
-| 13 | RENAFIPSE | https://renafipse.ec/ | 2026-09-30 | Nombre oficial de la institución de las prácticas: Red Nacional de Finanzas Populares y Solidarias del Ecuador. |
+| 13 | RENAFIPSE (sitio solo en HTTP) | http://renafipse.ec/ | 2026-09-30 | Nombre oficial de la institución de las prácticas: Red Nacional de Finanzas Populares y Solidarias del Ecuador. |
 
 ## Supuestos (no verificados)
 - **Qué revisa un reclutador técnico:** no hay una fuente oficial. Se asumió, por práctica común en procesos de selección, que lo primero que se mira es el rol, los proyectos con captura y enlace al código, y una forma de contacto visible; por eso el orden del sitio es encabezado → proyectos → experiencia → habilidades → certificaciones → contacto.

@@ -310,7 +310,6 @@ export const experience: Experience[] = [
       es: ["Prácticas preprofesionales en bases de datos.", "Desarrollo de aplicaciones en Java con NetBeans."],
       en: ["Pre-professional internship in databases.", "Java application development with NetBeans."],
     },
-    link: "https://renafipse.ec/",
   },
   {
     role: { es: "Proyecto de titulación · Huellitas Inteligentes", en: "Capstone project · Huellitas Inteligentes" },
