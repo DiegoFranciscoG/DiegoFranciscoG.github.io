@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
-    "astro": "7.3.5",
+    "astro": "7.4.1",
     "sharp": "0.35.5"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.10",
+    "@astrojs/check": "0.9.11",
     "linkedom": "0.18.13",
     "typescript": "6.0.3",
     "vitest": "5.0.3"
